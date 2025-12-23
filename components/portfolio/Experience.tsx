@@ -13,31 +13,20 @@ export default function Experience({ experience }: { experience: any[] }) {
         <div className="space-y-8">
           {experience.map((job, idx) => (
             <div
+              className="collapse collapse-arrow bg-base-100 border border-base-300"
               key={idx}
-              className="card bg-base-200 shadow hover:shadow-2xl transition-all"
             >
-              <div className="card-body">
-                <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
-                  <div>
-                    <h3 className="card-title text-xl text-primary">
-                      {job.role}
-                    </h3>
-                    <p className="text-lg font-semibold opacity-80">
-                      {job.company}
-                    </p>
-                  </div>
-                  <div className="badge badge-secondary badge-lg mt-2 md:mt-0">
-                    {job.period}
-                  </div>
-                </div>
-                <ul className="space-y-2">
-                  {job.achievements.map((achievement: any, i: number) => (
-                    <li key={i} className="flex items-start">
-                      <span className="text-primary mr-2">▸</span>
-                      <span>{achievement}</span>
-                    </li>
-                  ))}
-                </ul>
+              <input type="radio" name="my-accordion-3" />
+              <div className="collapse-title font-semibold">
+                {job.title} 💼 {job.company}
+              </div>
+              <div className="collapse-content text-sm">
+                {job.achievements.map((achievement: any, i: number) => (
+                  <li key={i} className="flex items-start">
+                    <span className="text-primary mr-2">▸</span>
+                    <span>{achievement}</span>
+                  </li>
+                ))}
               </div>
             </div>
           ))}

@@ -17,7 +17,7 @@ export default function Hero({ onclick }: { onclick: () => void }) {
             Full-Stack Engineer
           </h1>
           <p className="text-xl md:text-2xl mb-4 opacity-80">
-            React • TypeScript • Node.js • AWS
+            React • TypeScript • Node.js • AWS • WordPress
           </p>
           <p className="py-6 text-lg max-w-2xl mx-auto">
             7+ years building scalable web and mobile platforms serving 10,000+

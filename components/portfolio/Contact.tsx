@@ -33,7 +33,8 @@ export default function Contact() {
         </div>
         <div className="mt-12 p-6 bg-base-200 rounded-lg">
           <p className="text-sm opacity-70">
-            📍 Currently based in Dracut, MA | Open to remote opportunities
+            📍 Currently based in Dracut, MA | Open to remote hybrid / on-site
+            opportunities
           </p>
         </div>
       </div>

@@ -11,14 +11,14 @@ export default function Skills({ skills }: { skills: any }) {
         <h2 className="text-4xl font-bold text-center mb-12">
           Technical Skills
         </h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-2">
           {Object.entries(skills).map(([category, items]: [string, any]) => (
             <div
               key={category}
               className="card bg-base-100 shadow hover:shadow-lg transition-shadow"
             >
               <div className="card-body">
-                <h3 className="card-title text-lg capitalize mb-4 text-primary">
+                <h3 className="card-title text-lg capitalize mb-4 text-primary text-center">
                   {category === "frontend" && "⚛️"}
                   {category === "backend" && "⚙️"}
                   {category === "database" && "🗄️"}
