@@ -16,10 +16,10 @@ export default function Hero({ onclick }: { onclick: () => void }) {
           <h1 className="text-3xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent animate-pulse py-2">
             Full-Stack Engineer
           </h1>
-          <p className="text-xl md:text-2xl mb-4 opacity-80">
+          <p className="text-xl md:text-2xl mb-4 opacity-80 text-center">
             React • TypeScript • Node.js • AWS • WordPress
           </p>
-          <p className="text-lg max-w-2xl text-center mx-auto pb-3">
+          <p className="text-lg max-w-2xl text-center mx-auto px-3 pb-3">
             7+ years building scalable web and mobile platforms serving 10,000+
             users across fin-tech, transport, and ed-tech. Specialized in
             high-performance UIs, microservices architecture, and cloud
