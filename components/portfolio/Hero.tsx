@@ -10,7 +10,7 @@ export default function Hero({ onclick }: { onclick: () => void }) {
         <div className="flex flex-col items-center justify-center h-full">
           <div className="avatar placeholder mb-6">
             <div className="bg-gradient-to-br from-primary to-secondary text-neutral-content rounded-full w-20 ring ring-primary ring-offset-base-100 ring-offset-2">
-              <span className="text-5xl font-bold">DW</span>
+              <span className="text-2xl font-bold">DW</span>
             </div>
           </div>
           <h1 className="text-3xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent animate-pulse py-2">
