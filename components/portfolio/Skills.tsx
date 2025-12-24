@@ -1,7 +1,6 @@
 import React from "react";
 
 export default function Skills({ skills }: { skills: any }) {
-  console.log(skills);
   return (
     <div
       id="skills"

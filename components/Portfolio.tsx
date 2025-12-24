@@ -7,6 +7,7 @@ import Experience from "./portfolio/Experience";
 import Projects from "./portfolio/Projects";
 import Contact from "./portfolio/Contact";
 import Hero from "./portfolio/Hero";
+import ThemeToggle from "./ThemeToggle";
 
 const Portfolio = () => {
   const [activeSection, setActiveSection] = useState("hero");
@@ -198,7 +199,7 @@ const Portfolio = () => {
             )}
           </ul>
         </div>
-        <div className="navbar-end">
+        <div className="navbar-end gap-2">
           <a
             href="mailto:davieswabuluka6@gmail.com"
             className="btn btn-primary btn-sm"
@@ -236,6 +237,7 @@ const Portfolio = () => {
           <p className="text-sm opacity-60">
             © 2025 - Built with React, TypeScript & DaisyUI
           </p>
+          <ThemeToggle />
         </div>
       </footer>
     </div>

@@ -1,5 +1,15 @@
 import type { Metadata } from "next";
 import "./global.css";
+import { Manrope } from "next/font/google";
+import { ReduxProvider } from "@/components/providers/ReduxProvider";
+import { ThemeInitializer } from "@/components/ThemeInitializer";
+
+const manrope = Manrope({
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["200", "300", "400", "500", "600", "700", "800"],
+  variable: "--font-manrope",
+});
 
 export const metadata: Metadata = {
   title: "Davies Wabuluka - Full-Stack Engineer",
@@ -27,8 +37,42 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" data-theme="light">
-      <body>{children}</body>
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* Script to prevent flash of incorrect theme */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var storedTheme = localStorage.getItem('theme') || 'system';
+                  var systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                  var initialTheme = storedTheme === 'system' ? systemTheme : storedTheme;
+                  
+                  // Apply theme to html element
+                  document.documentElement.classList.add(initialTheme);
+                  document.documentElement.style.colorScheme = initialTheme;
+                  
+                  // Also set a data attribute for CSS targeting
+                  document.documentElement.setAttribute('data-theme', initialTheme);
+                } catch (e) {
+                  // Fallback to light theme
+                  document.documentElement.classList.add('light');
+                  document.documentElement.style.colorScheme = 'light';
+                }
+              })();
+            `,
+          }}
+        />
+      </head>
+      <body
+        className={`${manrope.className} antialiased bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-200`}
+      >
+        <ReduxProvider>
+          <ThemeInitializer />
+          {children}
+        </ReduxProvider>
+      </body>
     </html>
   );
 }
