@@ -68,7 +68,7 @@ export default function About() {
                 />
               </figure>
               <div className="px-2 py-4">
-                <p className="text-lg font-normal code">
+                <p className="text-lg font-normal">
                   Experienced full-stack engineer with 7+ years building and
                   scaling high-traffic platforms in fin-tech, transport, and
                   ed-tech. Specializes in React, TypeScript, and Node.js, with

@@ -44,13 +44,26 @@ const Portfolio = () => {
   const experience = [
     {
       role: "React Developer",
+      company: "Institute of Certified Public Accountants of Uganda (ICPAU)",
+      period: "Oct 2024 - Mar 2025",
+      achievements: [
+        "Drove 35% faster feature delivery by leading 3-engineer team through React best practices and structured code review processes.",
+        "Shipped 4 core audit workflow modules serving 500+ certified accountants with 99.2% uptime and zero critical bugs.",
+        "Reduced data loss incidents by 90% implementing offline-sync capabilities and AWS S3 cloud storage integration.",
+        "Accelerated audit completion time by 25% building AI-assisted validation workflows using DeepSeek API integration.",
+        "Improved compliance tracking efficiency by 40% architecting regulatory dashboard with real-time analytics and multi-format exports.",
+      ],
+    },
+    {
+      role: "React Developer",
       company: "Refactory - Freude Gizmo (Japan)",
       period: "Oct 2024 - Mar 2025",
       achievements: [
-        "Built WCAG 2.1 AA compliant UIs serving 10K+ concurrent users with 99.95% uptime",
-        "Improved upload success rate by 40% through AWS S3 optimization",
-        "Reduced API calls by 35% with TanStack Query caching strategies",
-        "Mentored 4 junior developers on React patterns and testing",
+        "Increased mobile conversion rates by 28% building accessible, WCAG 2.1 AA-compliant UIs with React and TypeScript.",
+        "Boosted file upload success rate by 40% re-engineering Node.js services with AWS S3 pre-signed URLs.",
+        "Cut state-management bugs by 30% migrating from Context API to Redux Toolkit across 12 feature modules.",
+        "Reduced API calls by 35% implementing TanStack Query and GraphQL, decreasing monthly server costs by $2,400.",
+        "Accelerated junior developer productivity by 45% through mentoring on design patterns and GraphQL optimization techniques.",
       ],
     },
     {
@@ -58,10 +71,11 @@ const Portfolio = () => {
       company: "Service Cops Limited",
       period: "Apr 2022 - Oct 2024",
       achievements: [
-        "Led React Native app development serving 5K+ active users",
-        "Processed $500K+ monthly transactions with 20% success rate improvement",
-        "Reduced app latency by 35% through performance optimization",
-        "Boosted engagement by 25% with real-time notification system",
+        "Scaled mobile platform to 5,000+ active users maintaining 4.6-star rating through performance-optimized React Native architecture.",
+        "Reduced bandwidth consumption by 45% architecting GraphQL API layer with Apollo Server for efficient data fetching.",
+        "Processed $500K+ monthly payments with 20% higher success rate integrating Mastercard Payment Gateway SDK.",
+        "Cut app latency by 35% implementing offline-first caching strategy with Redux Persist and Apollo Client.",
+        "Increased user engagement by 25% building real-time WebSocket notifications with GraphQL subscriptions and AWS SNS.",
       ],
     },
     {
@@ -69,10 +83,22 @@ const Portfolio = () => {
       company: "Ridex Technologies",
       period: "Mar 2020 - Apr 2022",
       achievements: [
-        "Scaled ride-sharing platform to 15K+ MAU with 99.9% uptime",
-        "Reduced ETA calculation errors by 20% with Firebase integration",
-        "Halved executive reporting time through analytics dashboards",
-        "Increased retention by 15% via strategic push notifications",
+        "Built ride-sharing platform handling 3,000+ concurrent users and 15,000+ MAU with 99.9% uptime using React Native.",
+        "Improved ETA accuracy by 20% integrating Google Maps SDK and Firebase real-time location tracking.",
+        "Reduced executive reporting time by 50% delivering analytics dashboards with React and D3.js visualizations.",
+        "Boosted customer satisfaction scores by 18% implementing Socket.IO real-time chat for driver-rider communication.",
+        "Decreased server response time by 40% optimizing Node.js API endpoints through query optimization and caching strategies.",
+      ],
+    },
+    {
+      role: "Web Developer",
+      company: "Galaxy FM & Howwe Media House",
+      period: "Jan 2018 - Mar 2020",
+      achievements: [
+        "Enhanced site performance by 50% customizing WordPress themes with optimized JavaScript and asset compression techniques.",
+        "Enabled 1,000+ concurrent listeners by implementing WebRTC live-streaming functionality with 99% stream reliability.",
+        "Increased organic traffic by 40% redesigning mobile-responsive site with SEO optimization and reduced bounce rate by 25%.",
+        "Improved content delivery speed by 35% implementing CDN integration and lazy-loading strategies across media-heavy pages",
       ],
     },
   ];

@@ -4,31 +4,26 @@ export default function Experience({ experience }: { experience: any[] }) {
   return (
     <div
       id="experience"
-      className="min-h-screen flex items-center w-full py-20 px-4 bg-base-100"
+      className="min-h-screen flex flex-col px-4 bg-base-100 items-center justify-center py-10"
     >
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl font-bold text-center mb-12">
-          Work Experience
-        </h2>
+      <h2 className="text-4xl font-bold text-center mb-12">Work Experience</h2>
+      <div className="w-3/3 md:w-2/3 mx-auto">
         <div className="space-y-8">
           {experience.map((job, idx) => (
-            <div
-              className="collapse collapse-arrow bg-base-100 border border-base-300"
+            <details
+              className="flex flex-col justify-center w-full bg-base-100 min-h-3"
               key={idx}
             >
-              <input type="radio" name="my-accordion-3" />
-              <div className="collapse-title font-semibold">
+              <summary className="font-semibold cursor-pointer mb-4">
                 {job.title} 💼 {job.company}
-              </div>
-              <div className="collapse-content text-sm">
-                {job.achievements.map((achievement: any, i: number) => (
-                  <li key={i} className="flex items-start">
-                    <span className="text-primary mr-2">▸</span>
-                    <span>{achievement}</span>
-                  </li>
-                ))}
-              </div>
-            </div>
+              </summary>
+              {job.achievements.map((achievement: any, i: number) => (
+                <li key={i} className="flex items-start">
+                  <span className="text-primary mr-2 text-2xl">•</span>
+                  <span className="font-light text-lg">{achievement}</span>
+                </li>
+              ))}
+            </details>
           ))}
         </div>
       </div>
