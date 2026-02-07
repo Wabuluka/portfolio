@@ -30,10 +30,11 @@ export function ReduxProvider({ children }: { children: React.ReactNode }) {
         // Save to localStorage
         localStorage.setItem("theme", currentTheme);
 
-        // Apply to document
+        // Apply to document — DaisyUI uses data-theme attribute
         document.documentElement.classList.remove("light", "dark");
         document.documentElement.classList.add(effectiveTheme);
         document.documentElement.style.colorScheme = effectiveTheme;
+        document.documentElement.setAttribute("data-theme", effectiveTheme);
       }
     };
 

@@ -1,39 +1,98 @@
-import React from "react";
+"use client";
 
-export default function Skills({ skills }: { skills: any }) {
+import React, { useEffect, useRef } from "react";
+import { Monitor, Server, Database, Cloud, ShieldCheck } from "lucide-react";
+
+const categoryConfig: Record<
+  string,
+  { icon: React.ElementType; color: string; label: string }
+> = {
+  frontend: { icon: Monitor, color: "primary", label: "Frontend" },
+  backend: { icon: Server, color: "secondary", label: "Backend & APIs" },
+  database: { icon: Database, color: "accent", label: "Databases & Real-time" },
+  cloud: { icon: Cloud, color: "info", label: "Cloud & DevOps" },
+  testing: { icon: ShieldCheck, color: "success", label: "Testing & QA" },
+};
+
+export default function Skills({
+  skills,
+}: {
+  skills: Record<string, string[]>;
+}) {
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add("visible");
+        });
+      },
+      { threshold: 0.05 }
+    );
+
+    const elements = sectionRef.current?.querySelectorAll(".animate-on-scroll");
+    elements?.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div
-      id="skills"
-      className="flex min-h-screen items-center py-20 px-4 bg-base-200"
-    >
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl font-bold text-center mb-12">
-          Technical Skills
-        </h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-2">
-          {Object.entries(skills).map(([category, items]: [string, any]) => (
-            <div
-              key={category}
-              className="card bg-base-100 shadow hover:shadow-lg transition-shadow"
-            >
-              <div className="card-body">
-                <h3 className="card-title text-lg capitalize mb-4 text-primary text-center">
-                  {category === "frontend" && "⚛️"}
-                  {category === "backend" && "⚙️"}
-                  {category === "database" && "🗄️"}
-                  {category === "cloud" && "☁️"}
-                  {category}
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {(items as string[]).map((skill) => (
-                    <div key={skill} className="">
-                      {skill}
+    <div id="skills" ref={sectionRef} className="relative py-24 px-6 bg-base-200/50 dot-grid">
+      <div className="relative z-10 max-w-5xl mx-auto">
+        <div className="animate-on-scroll text-center mb-14">
+          <p className="code-comment mb-2">{"// what I work with"}</p>
+          <h2 className="section-heading">
+            Technical <span className="text-primary">Skills</span>
+          </h2>
+          <p className="section-subtitle">
+            The tools and technologies I use daily
+          </p>
+        </div>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {Object.entries(skills).map(([category, items], idx) => {
+            const config = categoryConfig[category];
+            const Icon = config?.icon || Monitor;
+            const color = config?.color || "primary";
+
+            return (
+              <div
+                key={category}
+                className="animate-on-scroll"
+                style={{ transitionDelay: `${idx * 0.06}s` }}
+              >
+                <div className="terminal-card h-full">
+                  <div className="terminal-header">
+                    <div className="terminal-dots">
+                      <span /><span /><span />
                     </div>
-                  ))}
+                    <span className="terminal-title">{category}.ts</span>
+                  </div>
+                  <div className="p-5">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className={`w-9 h-9 rounded-md bg-${color}/10 border border-${color}/20 flex items-center justify-center`}>
+                        <Icon className={`w-4 h-4 text-${color}`} />
+                      </div>
+                      <div>
+                        <h3 className="font-bold text-sm">{config?.label || category}</h3>
+                        <p className="text-[10px] text-base-content/30 font-mono">
+                          {items.length} modules
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex flex-wrap gap-1.5">
+                      {(items as string[]).map((skill) => (
+                        <span key={skill} className="tech-tag text-[10px]">
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </div>

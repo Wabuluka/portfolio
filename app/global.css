@@ -8,73 +8,152 @@
   }
 
   body {
-    @apply bg-base-200;
+    @apply bg-base-100;
+  }
+
+  ::selection {
+    @apply bg-primary/30 text-primary;
+  }
+}
+
+@layer components {
+  /* ─── Terminal Card ─── */
+  .terminal-card {
+    @apply bg-base-200 border border-base-content/10 rounded-lg overflow-hidden;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .terminal-card:hover {
+    @apply border-primary/30;
+    box-shadow: 0 0 20px rgba(34, 211, 238, 0.08);
+  }
+
+  /* Terminal header with macOS-style dots */
+  .terminal-header {
+    @apply flex items-center gap-2 px-4 py-2.5 bg-base-300/50 border-b border-base-content/10;
+  }
+
+  .terminal-dots {
+    @apply flex gap-1.5;
+  }
+
+  .terminal-dots span {
+    @apply w-2.5 h-2.5 rounded-full;
+  }
+
+  .terminal-dots span:nth-child(1) { @apply bg-error/70; }
+  .terminal-dots span:nth-child(2) { @apply bg-warning/70; }
+  .terminal-dots span:nth-child(3) { @apply bg-success/70; }
+
+  .terminal-title {
+    @apply text-[11px] font-mono text-base-content/40 ml-2;
+  }
+
+  /* ─── Glass Card ─── */
+  .glass-card {
+    @apply bg-base-200/50 backdrop-blur-sm border border-base-content/[0.06] rounded-lg;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+  }
+
+  .glass-card:hover {
+    @apply border-primary/20;
+    box-shadow: 0 0 30px rgba(34, 211, 238, 0.06);
+  }
+
+  /* ─── Tech Tag ─── */
+  .tech-tag {
+    @apply inline-flex items-center px-2.5 py-1 text-[11px] font-mono font-medium rounded-md
+           bg-primary/[0.08] text-primary border border-primary/20;
+    transition: all 0.2s ease;
+  }
+
+  .tech-tag:hover {
+    @apply bg-primary/[0.15] border-primary/40;
+  }
+
+  .tech-tag-secondary {
+    @apply inline-flex items-center px-2.5 py-1 text-[11px] font-mono font-medium rounded-md
+           bg-secondary/[0.08] text-secondary border border-secondary/20;
+  }
+
+  .tech-tag-accent {
+    @apply inline-flex items-center px-2.5 py-1 text-[11px] font-mono font-medium rounded-md
+           bg-accent/[0.08] text-accent border border-accent/20;
+  }
+
+  /* ─── Section Heading ─── */
+  .section-heading {
+    @apply text-3xl md:text-4xl font-black tracking-tight mb-3;
+  }
+
+  .section-subtitle {
+    @apply text-base-content/50 text-sm md:text-base max-w-lg mx-auto leading-relaxed font-mono;
+  }
+
+  /* ─── Code Comment ─── */
+  .code-comment {
+    @apply text-base-content/30 font-mono text-xs;
+  }
+
+  /* ─── Scroll Animation ─── */
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+
+  .animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── Tech Nav ─── */
+  .tech-nav {
+    @apply bg-base-100/90 backdrop-blur-md border-b border-base-content/[0.06];
+  }
+
+  /* ─── Gradient Text ─── */
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-accent;
+  }
+
+  /* ─── Glow Line ─── */
+  .glow-line {
+    @apply h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent;
+  }
+
+  /* ─── Status Indicator ─── */
+  .status-dot {
+    @apply w-2 h-2 rounded-full bg-accent animate-pulse-glow;
   }
 }
 
 @layer utilities {
-  .text-gradient {
-    @apply bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent;
+  .text-balance {
+    text-wrap: balance;
   }
 }
 
-section {
-  padding-top: 4rem;
-  width: 50%;
-  margin: auto;
-}
-h1 {
-  font-size: 2rem;
-  font-weight: 500;
-}
-details[open] summary ~ * {
-  animation: open 0.3s ease-in-out;
+/* ─── Dot Grid Background ─── */
+.dot-grid {
+  background-image: radial-gradient(oklch(var(--bc) / 0.07) 1px, transparent 1px);
+  background-size: 24px 24px;
 }
 
-@keyframes open {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-details summary::-webkit-details-marker {
-  display: none;
+/* ─── Scrollbar — Tech slim ─── */
+::-webkit-scrollbar {
+  width: 6px;
 }
 
-details summary {
-  width: 100%;
-  padding: 0.5rem 0;
-  border-top: 1px solid black;
-  position: relative;
-  cursor: pointer;
-  font-size: 1.25rem;
-  font-weight: 300;
-  list-style: none;
+::-webkit-scrollbar-track {
+  background: oklch(var(--b2));
 }
 
-details summary:after {
-  content: "+";
-  color: black;
-  position: absolute;
-  font-size: 1.75rem;
-  line-height: 0;
-  margin-top: 0.75rem;
-  right: 0;
-  font-weight: 200;
-  transform-origin: center;
-  transition: 200ms linear;
+::-webkit-scrollbar-thumb {
+  background: oklch(var(--p) / 0.3);
+  border-radius: 3px;
 }
-details[open] summary:after {
-  transform: rotate(45deg);
-  font-size: 2rem;
-}
-details summary {
-  outline: 0;
-}
-details p {
-  font-size: 0.95rem;
-  margin: 0 0 1rem;
-  padding-top: 1rem;
+
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(var(--p) / 0.5);
 }
