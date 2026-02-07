@@ -16,26 +16,68 @@ const jetbrains = JetBrains_Mono({
   variable: "--font-jetbrains",
 });
 
+const siteUrl = "https://davieswabuluka.com";
+
 export const metadata: Metadata = {
-  title: "Davies Wabuluka - Senior Software Engineer",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Davies Wabuluka — Senior Software Engineer",
+    template: "%s | Davies Wabuluka",
+  },
   description:
-    "Senior Software Engineer with 7+ years designing production-grade platforms serving 10,000+ users. React, TypeScript, Node.js, GraphQL & AWS expert.",
+    "Senior Software Engineer with 7+ years designing production-grade platforms serving 10,000+ users across fintech, ridesharing & audit management. React, TypeScript, Node.js, GraphQL & AWS expert.",
   keywords: [
+    "Davies Wabuluka",
     "Senior Software Engineer",
+    "Full-Stack Developer",
     "React Developer",
-    "TypeScript",
-    "Node.js",
-    "GraphQL",
-    "AWS",
-    "React Native",
-    "Full-Stack Engineer",
+    "TypeScript Developer",
+    "Node.js Developer",
+    "GraphQL Developer",
+    "AWS Architect",
+    "React Native Developer",
+    "Software Engineer Portfolio",
   ],
-  authors: [{ name: "Davies Wabuluka" }],
+  authors: [{ name: "Davies Wabuluka", url: siteUrl }],
+  creator: "Davies Wabuluka",
+  publisher: "Davies Wabuluka",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  alternates: {
+    canonical: siteUrl,
+  },
   openGraph: {
-    title: "Davies Wabuluka - Senior Software Engineer",
-    description:
-      "7+ years designing production-grade platforms serving 10,000+ users across fintech, ridesharing, and audit management.",
     type: "website",
+    locale: "en_US",
+    url: siteUrl,
+    siteName: "Davies Wabuluka",
+    title: "Davies Wabuluka — Senior Software Engineer",
+    description:
+      "7+ years designing production-grade platforms serving 10,000+ users across fintech, ridesharing & audit management. Expert in React, TypeScript, Node.js & AWS.",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Davies Wabuluka — Senior Software Engineer",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Davies Wabuluka — Senior Software Engineer",
+    description:
+      "7+ years designing production-grade platforms serving 10,000+ users. React, TypeScript, Node.js & AWS expert.",
+    images: ["/og-image.png"],
   },
 };
 
