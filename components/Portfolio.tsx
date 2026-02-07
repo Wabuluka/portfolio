@@ -64,7 +64,7 @@ const Portfolio = () => {
       "TDD",
       "Storybook",
       "A/B Testing",
-      "WCAG 2.1 AA Compliance",
+      "WCAG 2.2 AA Compliance",
     ],
   };
 
@@ -86,7 +86,7 @@ const Portfolio = () => {
       company: "Refactory (Client: Freude Gizmo, Japan)",
       period: "Oct 2024 - Mar 2025",
       achievements: [
-        "Engineered accessible, WCAG 2.1 AA-compliant UIs with React, TypeScript, and Styled Components boosting mobile conversion by 28%.",
+        "Engineered accessible, WCAG 2.2 AA-compliant UIs with React, TypeScript, and Styled Components boosting mobile conversion by 28%.",
         "Re-engineered Node.js file-upload services with AWS S3 pre-signed URLs, improving upload success by 40% for 500MB files.",
         "Migrated from Context API to Redux Toolkit across 12 feature modules, reducing state-management bugs by 30%.",
         "Implemented TanStack Query caching and GraphQL query batching, reducing API calls by 35% and saving $2,400/month in server costs.",
@@ -194,8 +194,14 @@ const Portfolio = () => {
 
   return (
     <div className="min-h-screen bg-base-100">
-      {/* Navigation */}
+      {/* WCAG 2.2 §2.4.1 Skip-to-Content */}
+      <a href="#main-content" className="skip-to-content">
+        Skip to main content
+      </a>
+
+      {/* Navigation — WCAG 2.2 §1.3.1 Landmarks */}
       <nav
+        aria-label="Main navigation"
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled ? "tech-nav" : "bg-transparent"
         }`}
@@ -205,21 +211,24 @@ const Portfolio = () => {
             {/* Logo */}
             <button
               onClick={() => scrollToSection("hero")}
-              className="flex items-center gap-2 text-primary hover:opacity-80 transition-opacity"
+              className="flex items-center gap-2 text-primary hover:opacity-80 transition-opacity min-h-[44px] min-w-[44px]"
+              aria-label="Go to top of page"
             >
-              <Terminal className="w-4 h-4" />
+              <Terminal className="w-4 h-4" aria-hidden="true" />
               <span className="text-sm font-bold font-mono">davies.dev</span>
             </button>
 
-            {/* Desktop Nav */}
-            <div className="hidden lg:flex items-center gap-1">
+            {/* Desktop Nav — WCAG 2.2 §2.4.7 Focus Visible */}
+            <div className="hidden lg:flex items-center gap-1" role="list">
               {navItems.map((item) => {
                 const isActive = activeSection === item.toLowerCase();
                 return (
                   <button
                     key={item}
+                    role="listitem"
                     onClick={() => scrollToSection(item.toLowerCase())}
-                    className={`px-3 py-1.5 rounded-md text-xs font-mono transition-all duration-200 ${
+                    aria-current={isActive ? "true" : undefined}
+                    className={`px-3 py-1.5 rounded-md text-xs font-mono transition-all duration-200 min-h-[36px] ${
                       isActive
                         ? "text-primary bg-primary/[0.08] border border-primary/20"
                         : "text-base-content/40 hover:text-base-content/70 hover:bg-base-content/[0.04] border border-transparent"
@@ -236,30 +245,35 @@ const Portfolio = () => {
               <ThemeToggle />
               <a
                 href="mailto:davieswabuluka6@gmail.com"
-                className="hidden sm:inline-flex items-center gap-1.5 px-4 py-1.5 bg-primary text-primary-content text-xs font-semibold rounded-md hover:shadow-glow transition-all duration-300"
+                className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 bg-primary text-primary-content text-xs font-semibold rounded-md hover:shadow-glow transition-all duration-300 min-h-[36px]"
               >
-                <Mail className="w-3.5 h-3.5" />
+                <Mail className="w-3.5 h-3.5" aria-hidden="true" />
                 Hire Me
               </a>
 
-              {/* Mobile menu */}
+              {/* Mobile menu — WCAG 2.2 §4.1.2 aria-expanded */}
               <button
-                className="lg:hidden w-8 h-8 rounded-md flex items-center justify-center text-base-content/50 hover:text-primary hover:bg-primary/[0.08] border border-transparent hover:border-primary/20 transition-all"
+                className="lg:hidden min-w-[44px] min-h-[44px] rounded-md flex items-center justify-center text-base-content/50 hover:text-primary hover:bg-primary/[0.08] border border-transparent hover:border-primary/20 transition-all"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                aria-label="Toggle menu"
+                aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+                aria-expanded={isMenuOpen}
+                aria-controls="mobile-nav"
               >
                 {isMenuOpen ? (
-                  <X className="w-5 h-5" />
+                  <X className="w-5 h-5" aria-hidden="true" />
                 ) : (
-                  <Menu className="w-5 h-5" />
+                  <Menu className="w-5 h-5" aria-hidden="true" />
                 )}
               </button>
             </div>
           </div>
         </div>
 
-        {/* Mobile dropdown */}
+        {/* Mobile dropdown — WCAG 2.2 §4.1.2 */}
         <div
+          id="mobile-nav"
+          role="menu"
+          aria-hidden={!isMenuOpen}
           className={`lg:hidden overflow-hidden transition-all duration-300 ease-out ${
             isMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
           }`}
@@ -269,8 +283,10 @@ const Portfolio = () => {
               {navItems.map((item) => (
                 <button
                   key={item}
+                  role="menuitem"
                   onClick={() => scrollToSection(item.toLowerCase())}
-                  className={`block w-full text-left px-3 py-2.5 rounded-md text-sm font-mono transition-all ${
+                  aria-current={activeSection === item.toLowerCase() ? "true" : undefined}
+                  className={`block w-full text-left px-3 py-2.5 rounded-md text-sm font-mono transition-all min-h-[44px] ${
                     activeSection === item.toLowerCase()
                       ? "text-primary bg-primary/[0.08] border border-primary/20"
                       : "text-base-content/50 hover:bg-base-content/[0.04] border border-transparent"
@@ -281,7 +297,8 @@ const Portfolio = () => {
               ))}
               <a
                 href="mailto:davieswabuluka6@gmail.com"
-                className="block w-full text-center mt-2 px-4 py-2.5 bg-primary text-primary-content text-sm font-semibold rounded-md"
+                role="menuitem"
+                className="block w-full text-center mt-2 px-4 py-2.5 bg-primary text-primary-content text-sm font-semibold rounded-md min-h-[44px]"
               >
                 Hire Me
               </a>
@@ -290,64 +307,68 @@ const Portfolio = () => {
         </div>
       </nav>
 
-      {/* Sections */}
-      <Hero onclick={() => scrollToSection("projects")} />
-      <div className="glow-line" />
-      <About />
-      <div className="glow-line" />
-      <Skills skills={skills} />
-      <div className="glow-line" />
-      <Experience experience={experience} />
-      <div className="glow-line" />
-      <Projects projects={projects} />
-      <div className="glow-line" />
-      <Contact />
+      {/* WCAG 2.2 §1.3.1 Main Landmark */}
+      <main id="main-content">
+        <Hero onclick={() => scrollToSection("projects")} />
+        <div className="glow-line" aria-hidden="true" />
+        <About />
+        <div className="glow-line" aria-hidden="true" />
+        <Skills skills={skills} />
+        <div className="glow-line" aria-hidden="true" />
+        <Experience experience={experience} />
+        <div className="glow-line" aria-hidden="true" />
+        <Projects projects={projects} />
+        <div className="glow-line" aria-hidden="true" />
+        <Contact />
+      </main>
 
-      {/* Footer */}
-      <footer className="py-10 px-6 bg-base-200/50 border-t border-base-content/[0.06]">
+      {/* Footer — WCAG 2.2 §1.3.1 contentinfo landmark */}
+      <footer className="py-10 px-6 bg-base-200/50 border-t border-base-content/[0.06]" role="contentinfo">
         <div className="max-w-5xl mx-auto">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="text-center md:text-left flex items-center gap-2">
-              <Terminal className="w-4 h-4 text-primary" />
+              <Terminal className="w-4 h-4 text-primary" aria-hidden="true" />
               <span className="text-sm font-mono font-bold text-primary">
                 davies.dev
               </span>
-              <span className="text-xs text-base-content/30 font-mono">
+              <span className="text-xs text-base-content/30 font-mono" aria-hidden="true">
                 // Senior Software Engineer
               </span>
             </div>
 
-            <div className="flex items-center gap-2">
+            {/* WCAG 2.2 §2.5.8 Target Size — min 44x44 on touch */}
+            <div className="flex items-center gap-2" role="list" aria-label="Social links">
               {[
                 {
                   icon: GithubIcon,
                   href: "https://github.com/wabuluka",
-                  label: "GitHub",
+                  label: "GitHub (opens in new tab)",
                 },
                 {
                   icon: LinkedinIcon,
                   href: "https://www.linkedin.com/in/dwabuluka",
-                  label: "LinkedIn",
+                  label: "LinkedIn (opens in new tab)",
                 },
                 {
                   icon: Mail,
                   href: "mailto:davieswabuluka6@gmail.com",
-                  label: "Email",
+                  label: "Send email",
                 },
               ].map((social) => (
                 <a
                   key={social.label}
+                  role="listitem"
                   href={social.href}
-                  target={social.label !== "Email" ? "_blank" : undefined}
+                  target={!social.href.startsWith("mailto") ? "_blank" : undefined}
                   rel={
-                    social.label !== "Email"
+                    !social.href.startsWith("mailto")
                       ? "noopener noreferrer"
                       : undefined
                   }
-                  className="w-8 h-8 rounded-md flex items-center justify-center text-base-content/30 hover:text-primary hover:bg-primary/[0.08] border border-transparent hover:border-primary/20 transition-all duration-200"
+                  className="min-w-[44px] min-h-[44px] rounded-md flex items-center justify-center text-base-content/30 hover:text-primary hover:bg-primary/[0.08] border border-transparent hover:border-primary/20 transition-all duration-200"
                   aria-label={social.label}
                 >
-                  <social.icon className="w-4 h-4" />
+                  <social.icon className="w-4 h-4" aria-hidden="true" />
                 </a>
               ))}
             </div>
@@ -359,17 +380,18 @@ const Portfolio = () => {
         </div>
       </footer>
 
-      {/* Back to top */}
+      {/* Back to top — WCAG 2.2 §2.5.8 Target Size */}
       <button
         onClick={() => scrollToSection("hero")}
-        className={`fixed bottom-6 right-6 w-9 h-9 rounded-md bg-primary text-primary-content flex items-center justify-center transition-all duration-300 z-40 hover:shadow-glow ${
+        className={`fixed bottom-6 right-6 min-w-[44px] min-h-[44px] rounded-md bg-primary text-primary-content flex items-center justify-center transition-all duration-300 z-40 hover:shadow-glow ${
           showBackToTop
             ? "opacity-100 translate-y-0"
             : "opacity-0 translate-y-4 pointer-events-none"
         }`}
         aria-label="Back to top"
+        tabIndex={showBackToTop ? 0 : -1}
       >
-        <ArrowUp className="w-4 h-4" />
+        <ArrowUp className="w-4 h-4" aria-hidden="true" />
       </button>
     </div>
   );

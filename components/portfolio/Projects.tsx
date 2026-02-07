@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import { Sparkles, Tag, BookOpen, ExternalLink, Folder } from "lucide-react";
+import { Sparkles, Tag, BookOpen, Folder } from "lucide-react";
 
 const projectMeta: Record<
   string,
@@ -49,11 +49,11 @@ export default function Projects({ projects }: { projects: Project[] }) {
   }, []);
 
   return (
-    <div id="projects" ref={sectionRef} className="relative py-24 px-6 bg-base-200/50 dot-grid">
+    <section id="projects" ref={sectionRef} className="relative py-24 px-6 bg-base-200/50 dot-grid" aria-labelledby="projects-heading">
       <div className="relative z-10 max-w-5xl mx-auto">
         <div className="animate-on-scroll text-center mb-14">
-          <p className="code-comment mb-2">{"// things I've built"}</p>
-          <h2 className="section-heading">
+          <p className="code-comment mb-2" aria-hidden="true">{"// things I've built"}</p>
+          <h2 id="projects-heading" className="section-heading">
             Featured <span className="text-primary">Projects</span>
           </h2>
           <p className="section-subtitle">
@@ -73,8 +73,8 @@ export default function Projects({ projects }: { projects: Project[] }) {
                 className="animate-on-scroll"
                 style={{ transitionDelay: `${idx * 0.08}s` }}
               >
-                <div className="terminal-card h-full flex flex-col">
-                  <div className="terminal-header">
+                <article className="terminal-card h-full flex flex-col" aria-label={project.name}>
+                  <div className="terminal-header" aria-hidden="true">
                     <div className="terminal-dots">
                       <span /><span /><span />
                     </div>
@@ -102,20 +102,20 @@ export default function Projects({ projects }: { projects: Project[] }) {
                       {project.description}
                     </p>
 
-                    <div className="flex flex-wrap gap-1.5">
+                    <div className="flex flex-wrap gap-1.5" role="list" aria-label="Technologies used">
                       {project.tech.split(", ").map((tech) => (
-                        <span key={tech} className="tech-tag text-[10px]">
+                        <span key={tech} className="tech-tag text-[10px]" role="listitem">
                           {tech}
                         </span>
                       ))}
                     </div>
                   </div>
-                </div>
+                </article>
               </div>
             );
           })}
         </div>
       </div>
-    </div>
+    </section>
   );
 }

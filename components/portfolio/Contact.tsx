@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import { Mail, LinkedinIcon, Phone, MapPin, ArrowUpRight, Send } from "lucide-react";
+import { Mail, LinkedinIcon, Phone, MapPin, Send } from "lucide-react";
 
 export default function Contact() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -46,11 +46,11 @@ export default function Contact() {
   ];
 
   return (
-    <div id="contact" ref={sectionRef} className="relative py-24 px-6 bg-base-100">
+    <section id="contact" ref={sectionRef} className="relative py-24 px-6 bg-base-100" aria-labelledby="contact-heading">
       <div className="relative z-10 max-w-3xl mx-auto">
         <div className="animate-on-scroll text-center mb-14">
-          <p className="code-comment mb-2">{"// let's connect"}</p>
-          <h2 className="section-heading">
+          <p className="code-comment mb-2" aria-hidden="true">{"// let's connect"}</p>
+          <h2 id="contact-heading" className="section-heading">
             Get In <span className="text-primary">Touch</span>
           </h2>
           <p className="section-subtitle">
@@ -74,13 +74,14 @@ export default function Contact() {
                 rel={contact.label === "LinkedIn" ? "noopener noreferrer" : undefined}
                 className="terminal-card p-5 text-center group"
               >
-                <div className={`w-11 h-11 rounded-lg bg-${contact.color}/10 border border-${contact.color}/20 flex items-center justify-center mx-auto mb-3 group-hover:shadow-glow transition-shadow`}>
+                <div className={`w-11 h-11 rounded-lg bg-${contact.color}/10 border border-${contact.color}/20 flex items-center justify-center mx-auto mb-3 group-hover:shadow-glow transition-shadow`} aria-hidden="true">
                   <Icon className={`w-5 h-5 text-${contact.color}`} />
                 </div>
                 <h3 className="font-semibold text-sm mb-1">{contact.label}</h3>
                 <p className="text-[11px] text-base-content/40 font-mono break-all">
                   {contact.value}
                 </p>
+                {contact.label === "LinkedIn" && <span className="sr-only">(opens in new tab)</span>}
               </a>
             );
           })}
@@ -89,7 +90,7 @@ export default function Contact() {
         {/* CTA */}
         <div className="animate-on-scroll" style={{ transitionDelay: "0.1s" }}>
           <div className="terminal-card">
-            <div className="terminal-header">
+            <div className="terminal-header" aria-hidden="true">
               <div className="terminal-dots">
                 <span /><span /><span />
               </div>
@@ -105,9 +106,9 @@ export default function Contact() {
               </p>
               <a
                 href="mailto:davieswabuluka6@gmail.com"
-                className="inline-flex items-center gap-2 px-8 py-3 bg-primary text-primary-content font-semibold text-sm rounded-lg hover:shadow-glow transition-all duration-300"
+                className="inline-flex items-center gap-2 px-8 py-3 bg-primary text-primary-content font-semibold text-sm rounded-lg hover:shadow-glow transition-all duration-300 min-h-[44px]"
               >
-                <Send className="w-4 h-4" />
+                <Send className="w-4 h-4" aria-hidden="true" />
                 Send me an email
               </a>
             </div>
@@ -120,11 +121,11 @@ export default function Contact() {
           style={{ transitionDelay: "0.15s" }}
         >
           <span className="inline-flex items-center gap-2 text-xs font-mono text-base-content/30">
-            <MapPin className="w-3 h-3" />
+            <MapPin className="w-3 h-3" aria-hidden="true" />
             Dracut, MA · Remote, hybrid & on-site · Open to relocate
           </span>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

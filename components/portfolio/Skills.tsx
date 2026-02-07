@@ -37,11 +37,11 @@ export default function Skills({
   }, []);
 
   return (
-    <div id="skills" ref={sectionRef} className="relative py-24 px-6 bg-base-200/50 dot-grid">
+    <section id="skills" ref={sectionRef} className="relative py-24 px-6 bg-base-200/50 dot-grid" aria-labelledby="skills-heading">
       <div className="relative z-10 max-w-5xl mx-auto">
         <div className="animate-on-scroll text-center mb-14">
-          <p className="code-comment mb-2">{"// what I work with"}</p>
-          <h2 className="section-heading">
+          <p className="code-comment mb-2" aria-hidden="true">{"// what I work with"}</p>
+          <h2 id="skills-heading" className="section-heading">
             Technical <span className="text-primary">Skills</span>
           </h2>
           <p className="section-subtitle">
@@ -62,7 +62,7 @@ export default function Skills({
                 style={{ transitionDelay: `${idx * 0.06}s` }}
               >
                 <div className="terminal-card h-full">
-                  <div className="terminal-header">
+                  <div className="terminal-header" aria-hidden="true">
                     <div className="terminal-dots">
                       <span /><span /><span />
                     </div>
@@ -81,9 +81,9 @@ export default function Skills({
                       </div>
                     </div>
 
-                    <div className="flex flex-wrap gap-1.5">
+                    <div className="flex flex-wrap gap-1.5" role="list" aria-label={`${config?.label || category} skills`}>
                       {(items as string[]).map((skill) => (
-                        <span key={skill} className="tech-tag text-[10px]">
+                        <span key={skill} className="tech-tag text-[10px]" role="listitem">
                           {skill}
                         </span>
                       ))}
@@ -95,6 +95,6 @@ export default function Skills({
           })}
         </div>
       </div>
-    </div>
+    </section>
   );
 }
