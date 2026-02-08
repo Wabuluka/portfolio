@@ -215,7 +215,7 @@ const Portfolio = () => {
               aria-label="Go to top of page"
             >
               <Terminal className="w-4 h-4" aria-hidden="true" />
-              <span className="text-sm font-bold font-mono">davies.dev</span>
+              <span className="text-sm font-bold font-mono">dwabuluka.dev</span>
             </button>
 
             {/* Desktop Nav — WCAG 2.2 §2.4.7 Focus Visible */}
@@ -329,7 +329,7 @@ const Portfolio = () => {
             <div className="text-center md:text-left flex items-center gap-2">
               <Terminal className="w-4 h-4 text-primary" aria-hidden="true" />
               <span className="text-sm font-mono font-bold text-primary">
-                davies.dev
+                dwabuluka.dev
               </span>
               <span className="text-xs text-base-content/30 font-mono" aria-hidden="true">
                 // Senior Software Engineer
